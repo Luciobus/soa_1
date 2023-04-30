@@ -1,0 +1,76 @@
+services:
+  proxy:
+    build:
+      context: ./proxy
+    ports:
+      - "2000:2000/udp"
+
+  native:
+    build:
+      context: ./server
+    hostname: "NATIVE"
+    expose:
+      - 3001/udp
+    command: [ "3001"]
+    environment:
+      - FORMAT_TYPE=NATIVE
+
+  json:
+    build:
+      context: ./server
+    hostname: "JSON"
+    expose:
+      - 3002/udp
+    command: [ "3002"]
+    environment:
+      - FORMAT_TYPE=JSON
+
+  xml:
+    build:
+      context: ./server
+    hostname: "XML"
+    expose:
+      - 3003/udp
+    command: [ "3003"]
+    environment:
+      - FORMAT_TYPE=XML
+
+  proto:
+    build:
+      context: ./server
+    hostname: "GOOGLE_BUFFER"
+    expose:
+      - 3004/udp
+    command: [ "3004"]
+    environment:
+      - FORMAT_TYPE=GOOGLE_BUFFER
+  
+  avro:
+    build:
+      context: ./server
+    hostname: "APACHE"
+    expose:
+      - 3005/udp
+    command: [ "3005"]
+    environment:
+      - FORMAT_TYPE=APACHE
+
+  yaml:
+    build:
+      context: ./server
+    hostname: "YAML"
+    expose:
+      - 3006/udp
+    command: [ "3006"]
+    environment:
+      - FORMAT_TYPE=YAML
+
+  msgpack:
+    build:
+      context: ./server
+    hostname: "MESSAGEPACK"
+    expose:
+      - 3007/udp
+    command: [ "3007"]
+    environment:
+      - FORMAT_TYPE=MESSAGEPACK
